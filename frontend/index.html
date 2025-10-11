@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cứu Hộ Toàn Quốc</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="topbar">
+    <div class="logo">
+      <img src="assets/logo.png" alt="Logo" />
+      <h1>Cứu Hộ</h1>
+    </div>
+
+    <div class="filters">
+      <input type="text" id="searchInput" placeholder="🔍 Tìm kiếm sự kiện..." />
+      <select id="provinceSelect">
+        <option value="">Thái Nguyên</option>
+        <option value="HN">Hà Nội</option>
+        <option value="HP">Hải Phòng</option>
+      </select>
+      <button id="filterBtn">⚙️</button>
+    </div>
+
+    <nav class="menu">
+      <a href="#">Trang chủ</a>
+      <a href="#">Bản đồ</a>
+      <a href="#">Báo tin</a>
+      <a href="#">Liên hệ</a>
+    </nav>
+  </header>
+
+  <!-- Main Layout -->
+  <main class="layout">
+    <!-- Left Sidebar: Danh sách -->
+    <aside class="sidebar">
+      <div class="filterTabs">
+        <button class="active">Tất cả</button>
+        <button>🆘 Cần cứu</button>
+        <button>🚑 Đội cứu hộ</button>
+        <button>⚠️ Cảnh báo</button>
+      </div>
+
+      <div id="reportList" class="report-list">
+        <!-- JS render cards -->
+      </div>
+
+      <button class="btn-submit">Gửi phản ánh</button>
+    </aside>
+
+    <!-- Right: Map -->
+    <section class="map-section">
+      <div id="map"></div>
+      <div class="map-floating">
+        <button class="float-btn">🕓 24h</button>
+        <button class="float-btn">🗺️</button>
+        <button class="float-btn">📍</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
