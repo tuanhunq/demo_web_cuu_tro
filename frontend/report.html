@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Báo Tin Cứu Hộ</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="../frontend/styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -57,26 +57,8 @@
     <p>© 2025 Cứu Hộ Toàn Quốc - Kết nối khẩn cấp toàn quốc</p>
   </footer>
 
-  <script src="js/map.js"></script>
-  <script type="module" src="js/app.js"></script>
-  <script>
-    const form = document.getElementById('reportForm');
-    const btn = document.getElementById('submitBtn');
-    const msg = document.getElementById('responseMsg');
-
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      btn.disabled = true;
-      btn.textContent = "⏳ Đang gửi...";
-      
-      setTimeout(() => {
-        msg.textContent = "✅ Báo tin đã được gửi thành công! Đội cứu hộ sẽ liên hệ sớm.";
-        msg.style.color = "#22c55e";
-        btn.disabled = false;
-        btn.textContent = "🚀 Gửi Báo Tin";
-        form.reset();
-      }, 2000);
-    });
-  </script>
+  <script src="../frontend/js/map.js"></script>
+  <script type="module" src="../frontend/js/script.js"></script>
+ 
 </body>
 </html>

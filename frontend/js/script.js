@@ -20,7 +20,6 @@ export function renderReports(filter = 'all', keyword = '') {
   if (!listContainer) return;
   listContainer.innerHTML = '';
 
-  // remove existing markers from a globally available map (if present)
   try {
     if (window.__cuu_map_markers) {
       window.__cuu_map_markers.forEach(m => m.remove && m.remove());
@@ -74,7 +73,7 @@ export function renderReports(filter = 'all', keyword = '') {
   });
 }
 
-// wire tab and search events if present
+// Gắn sự kiện cho tab lọc và ô tìm kiếm
 if (tabs) {
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
@@ -91,7 +90,7 @@ if (searchInput) {
   });
 }
 
-// initial load: try to fetch from backend, fallback to empty list
+// Khởi tạo dữ liệu ban đầu
 (async function init() {
   try {
     localReports = await fetchReports();
@@ -101,3 +100,27 @@ if (searchInput) {
   }
   renderReports(getActiveType(), searchInput ? searchInput.value : '');
 })();
+
+// ===============================
+// 🧾 FORM GỬI BÁO CÁO CỨU HỘ
+// ===============================
+const form = document.getElementById('reportForm');
+const btn = document.getElementById('submitBtn');
+const msg = document.getElementById('responseMsg');
+
+if (form && btn && msg) {
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    btn.disabled = true;
+    btn.textContent = "⏳ Đang gửi...";
+    
+    // Giả lập gửi dữ liệu (2 giây)
+    setTimeout(() => {
+      msg.textContent = "✅ Báo tin đã được gửi thành công! Đội cứu hộ sẽ liên hệ sớm.";
+      msg.style.color = "#22c55e";
+      btn.disabled = false;
+      btn.textContent = "🚀 Gửi Báo Tin";
+      form.reset();
+    }, 2000);
+  });
+}
