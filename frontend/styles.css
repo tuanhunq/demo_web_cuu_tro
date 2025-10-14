@@ -1,6 +1,9 @@
-/* =======================
-   RESET & GLOBAL STYLES
-======================= */
+/* =====================================
+   🌐 CỨU HỘ TOÀN QUỐC - GLASS UI 2025
+   🚀 Optimized Unified Stylesheet
+===================================== */
+
+/* ===== RESET & VARIABLES ===== */
 * {
   margin: 0;
   padding: 0;
@@ -10,165 +13,158 @@
 
 :root {
   --primary: #00a36c;
+  --primary-dark: #00895c;
   --secondary: #007bff;
   --danger: #ef4444;
   --warning: #f59e0b;
-  --info: #8b5cf6;
+  --info: #3b82f6;
   --gray: #6b7280;
-  --bg: #f5f7fa;
-  --card-bg: #ffffff;
-  --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --bg: linear-gradient(135deg, #e6fff4, #eaf0f6);
+  --card-bg: rgba(255, 255, 255, 0.85);
+  --blur: blur(16px);
+  --radius: 16px;
+  --shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  --transition: all 0.3s ease;
 }
 
+/* ===== BASE ===== */
 body {
-  background-color: var(--bg);
+  background: var(--bg);
   color: #1f2937;
-  height: 100vh;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
-/* =======================
-   HEADER
-======================= */
-header {
+a, button, input, select, textarea {
+  transition: var(--transition);
+}
+
+/* =====================================
+   🔝 HEADER / NAVIGATION
+===================================== */
+.topbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 14px 28px;
-  background: var(--card-bg);
+  background: rgba(255,255,255,0.65);
+  backdrop-filter: var(--blur);
+  border-bottom: 1px solid rgba(0,0,0,0.05);
   box-shadow: var(--shadow);
   position: sticky;
   top: 0;
   z-index: 100;
+  border-radius: 0 0 var(--radius) var(--radius);
 }
 
-header .logo {
+.logo {
   display: flex;
   align-items: center;
+  gap: 8px;
   font-weight: 700;
   font-size: 20px;
   color: var(--primary);
-  gap: 8px;
 }
 
-header .logo img {
-  height: 32px;
-}
-
-header .controls {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-header select {
-  padding: 8px 12px;
+.logo img {
+  width: 42px;
+  height: 42px;
   border-radius: 10px;
-  border: 1px solid #e5e7eb;
-  background-color: #f9fafb;
-  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,163,108,0.3);
+}
+
+/* Menu */
+.menu {
+  display: flex;
+  gap: 14px;
+}
+.menu a {
+  color: #374151;
+  text-decoration: none;
   font-weight: 500;
-  transition: all 0.3s ease;
-}
-
-header select:hover {
-  border-color: var(--primary);
-}
-
-/* =======================
-   SEARCH & FILTERS
-======================= */
-.search-bar {
-  display: flex;
-  align-items: center;
-  background: white;
-  border-radius: 14px;
-  box-shadow: var(--shadow);
-  margin: 14px 16px;
-  padding: 6px 12px;
-}
-
-.search-bar input {
-  flex: 1;
-  border: none;
-  outline: none;
-  font-size: 15px;
-  background: transparent;
-  padding: 8px;
-}
-
-.search-bar .filter-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--primary);
-  color: white;
-  border: none;
   padding: 8px 12px;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  border-radius: 8px;
+}
+.menu a:hover {
+  background: var(--primary);
+  color: #fff;
+  box-shadow: 0 3px 10px rgba(0,163,108,0.3);
 }
 
-.search-bar .filter-btn:hover {
-  background: #008a5a;
-  transform: scale(1.05);
+/* =====================================
+   🧭 SIDEBAR + MAIN LAYOUT
+===================================== */
+.layout {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  height: calc(100vh - 72px);
 }
 
-/* =======================
-   MAIN LAYOUT
-======================= */
-.container {
-  display: flex;
-  flex: 1;
-  overflow: hidden;
-}
-
-/* Sidebar (Event List) */
 .sidebar {
-  width: 400px;
-  background: var(--card-bg);
-  box-shadow: var(--shadow);
+  background: rgba(255,255,255,0.65);
+  backdrop-filter: var(--blur);
+  border-right: 1px solid rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
   overflow-y: auto;
-  padding: 18px;
-  border-right: 1px solid #eee;
-  transition: all 0.3s ease;
+  box-shadow: var(--shadow);
 }
 
 .sidebar::-webkit-scrollbar {
   width: 6px;
 }
-
 .sidebar::-webkit-scrollbar-thumb {
-  background: #d1d5db;
+  background: #ccc;
   border-radius: 6px;
 }
 
-.sidebar::-webkit-scrollbar-thumb:hover {
-  background: #9ca3af;
+/* Tabs */
+.filterTabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 1rem;
+}
+.filterTabs button {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  background: #f3f4f6;
+  cursor: pointer;
+}
+.filterTabs button.active,
+.filterTabs button:hover {
+  background: var(--primary);
+  color: #fff;
 }
 
-/* =======================
-   CARD STYLES
-======================= */
-.card {
-  background: white;
+/* Report cards */
+.report-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.report-card {
+  background: var(--card-bg);
   border-radius: 16px;
-  padding: 18px 16px;
-  margin-bottom: 14px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
-  border: 1px solid #f1f5f9;
-  transition: all 0.3s ease;
+  padding: 14px 16px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  cursor: pointer;
+  transition: var(--transition);
 }
-
-.card:hover {
+.report-card:hover {
   transform: translateY(-3px);
   box-shadow: var(--shadow);
+  border-color: var(--primary);
 }
-
-.card .tag {
+.report-card h4 { font-size: 16px; margin-bottom: 6px; }
+.report-card p { font-size: 14px; color: var(--gray); }
+.tag {
   display: inline-block;
   padding: 4px 10px;
   border-radius: 10px;
@@ -176,132 +172,208 @@ header select:hover {
   font-weight: 600;
   color: white;
 }
+.tag.need { background: var(--info); }
+.tag.rescue { background: var(--danger); }
+.tag.warning { background: var(--warning); }
 
-.tag.need {
-  background: var(--info);
-}
-.tag.rescue {
-  background: var(--danger);
-}
-.tag.warning {
-  background: var(--warning);
-}
+/* =====================================
+   🗺️ MAP AREA
+===================================== */
+.map-section { position: relative; height: 100%; }
+#map { width: 100%; height: 100%; }
 
-.card h3 {
-  font-size: 16px;
-  margin: 8px 0;
-  color: #111827;
-}
-
-.card .meta {
-  font-size: 14px;
-  color: var(--gray);
-}
-
-.card .links {
-  margin-top: 8px;
-  display: flex;
-  gap: 12px;
-}
-
-.card .links a {
-  font-size: 13px;
-  text-decoration: none;
-  color: var(--secondary);
-  font-weight: 500;
-}
-
-.card .links a:hover {
-  text-decoration: underline;
-}
-
-/* =======================
-   MAP AREA
-======================= */
-.map-area {
-  flex: 1;
-  position: relative;
-  background: #e5e7eb;
-}
-
-.map-area iframe,
-.map-area #map {
-  width: 100%;
-  height: 100%;
-  border: none;
-  border-radius: 0;
-}
-
-/* Map overlay controls */
-.map-controls {
+.map-floating {
   position: absolute;
-  top: 16px;
-  right: 16px;
+  top: 18px; right: 18px;
   display: flex;
-  gap: 8px;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 999;
 }
-
-.map-controls button {
-  background: #ffffffcc;
-  border: none;
-  padding: 8px 14px;
-  border-radius: 12px;
+.float-btn {
+  background: rgba(255,255,255,0.8);
+  border: 1px solid rgba(0,0,0,0.1);
+  padding: 12px 16px;
+  border-radius: 14px;
+  font-weight: 600;
   cursor: pointer;
-  font-weight: 500;
-  color: #374151;
-  box-shadow: var(--shadow);
-  transition: all 0.3s ease;
 }
-
-.map-controls button.active {
-  background: var(--primary);
-  color: white;
-}
-
-.map-controls button:hover {
-  background: var(--primary);
-  color: white;
-}
-
-/* =======================
-   FLOATING ACTION BUTTON
-======================= */
-.fab {
-  position: fixed;
-  bottom: 26px;
-  right: 26px;
+.float-btn:hover,
+.float-btn.active {
   background: var(--primary);
   color: #fff;
-  font-size: 16px;
+  transform: scale(1.05);
+}
+
+/* =====================================
+   🔐 AUTH PAGE
+===================================== */
+body.auth-page {
+  background: linear-gradient(135deg,#0078ff,#00b894,#00a36c);
+  background-size: 300% 300%;
+  animation: gradientFlow 8s ease infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(16px);
+  border-radius: 24px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+  padding: 40px 36px;
+  width: 100%;
+  max-width: 400px;
+}
+
+h2 {
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #1e293b;
+}
+
+form { display: flex; flex-direction: column; gap: 16px; }
+form.hidden { display: none; }
+
+input, select, textarea {
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  font-size: 15px;
+  outline: none;
+  background: rgba(255,255,255,0.95);
+}
+input:focus, select:focus, textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 8px rgba(0,163,108,0.3);
+}
+
+button {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
   font-weight: 600;
-  padding: 14px 24px;
-  border-radius: 30px;
-  box-shadow: 0 6px 18px rgba(0, 163, 108, 0.4);
   cursor: pointer;
-  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(0,163,108,0.3);
+}
+button:hover { background: var(--primary-dark); }
+
+.switch {
+  text-align: center;
+  font-size: 14px;
+}
+.switch a { color: #0078ff; font-weight: 600; text-decoration: none; }
+.switch a:hover { text-decoration: underline; }
+
+/* =====================================
+   📍 REPORT FORM (Link Map + Gửi tin)
+===================================== */
+.report-form {
+  background: rgba(255,255,255,0.75);
+  backdrop-filter: blur(18px);
+  border-radius: 24px;
+  padding: 32px;
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(255,255,255,0.4);
+}
+.report-form h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--primary-dark);
+  text-align: center;
+  margin-bottom: 20px;
+}
+.form-group { margin-bottom: 20px; }
+.form-group label {
+  font-weight: 600;
+  color: #1e293b;
+  display: block;
+  margin-bottom: 6px;
+}
+textarea { resize: none; min-height: 90px; }
+
+.btn-maplink {
+  background: var(--info);
+  color: white;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+}
+.btn-maplink:hover { background: #2563eb; }
+
+.map-preview {
+  margin-top: 14px;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.map-preview iframe {
+  width: 100%;
+  height: 250px;
+  border: none;
 }
 
-.fab:hover {
-  background: #008b5a;
-  transform: translateY(-2px);
+/* Popup */
+.popup {
+  position: fixed; inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0,0,0,0.35);
+  backdrop-filter: blur(10px);
+  z-index: 9999;
+}
+.popup.hidden { display: none; }
+.popup-content {
+  background: rgba(255,255,255,0.9);
+  padding: 36px 44px;
+  border-radius: 22px;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+.popup-content button {
+  margin-top: 20px;
 }
 
-/* =======================
-   RESPONSIVE
-======================= */
+/* =====================================
+   🌙 DARK MODE
+===================================== */
+@media (prefers-color-scheme: dark) {
+  body {
+    background: linear-gradient(135deg,#0f172a,#1e293b);
+    color: #e2e8f0;
+  }
+  .topbar, .sidebar, .container, .report-form {
+    background: rgba(30,41,59,0.7);
+    border-color: rgba(255,255,255,0.08);
+  }
+  input, select, textarea { background: rgba(255,255,255,0.08); color: #e2e8f0; }
+  .float-btn { background: rgba(255,255,255,0.12); color: #e2e8f0; }
+}
+
+/* =====================================
+   ⚙️ RESPONSIVE
+===================================== */
 @media (max-width: 1000px) {
-  .sidebar {
-    width: 100%;
-    height: 50vh;
-    border-right: none;
-    border-bottom: 1px solid #eee;
-  }
+  .layout { grid-template-columns: 1fr; }
+  .sidebar { height: 50vh; border-right: none; border-bottom: 1px solid #eee; }
+  .map-section { height: 50vh; }
+  .menu { display: none; }
+}
+@media (max-width: 600px) {
+  .container { width: 90%; padding: 30px 24px; border-radius: 18px; }
+}
 
-  .container {
-    flex-direction: column;
-  }
-
-  .map-area {
-    height: 50vh;
-  }
+/* =====================================
+   🎬 ANIMATIONS
+===================================== */
+@keyframes gradientFlow {
+  0%,100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }

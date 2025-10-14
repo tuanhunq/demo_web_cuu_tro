@@ -4,13 +4,17 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Cứu Hộ Toàn Quốc</title>
+
+  <!-- Leaflet & Fonts -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-  <link rel="stylesheet" href="styles.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="styles.css"/>
 </head>
 
 <body>
-  <!-- Header -->
+  <!-- ================= HEADER ================= -->
   <header class="topbar">
     <div class="logo">
       <img src="assets/logo.png" alt="Logo" />
@@ -20,24 +24,86 @@
     <div class="filters">
       <input type="text" id="searchInput" placeholder="🔍 Tìm kiếm sự kiện..." />
       <select id="provinceSelect">
-        <option value="">Thái Nguyên</option>
-        <option value="HN">Hà Nội</option>
-        <option value="HP">Hải Phòng</option>
+        <option value="">-- Chọn tỉnh / thành phố --</option>
+        <option value="Hà Nội">Hà Nội</option>
+        <option value="Hồ Chí Minh">Hồ Chí Minh</option>
+        <option value="Hải Phòng">Hải Phòng</option>
+        <option value="Đà Nẵng">Đà Nẵng</option>
+        <option value="Cần Thơ">Cần Thơ</option>
+        <option value="An Giang">An Giang</option>
+        <option value="Bà Rịa - Vũng Tàu">Bà Rịa - Vũng Tàu</option>
+        <option value="Bắc Giang">Bắc Giang</option>
+        <option value="Bắc Kạn">Bắc Kạn</option>
+        <option value="Bạc Liêu">Bạc Liêu</option>
+        <option value="Bắc Ninh">Bắc Ninh</option>
+        <option value="Bến Tre">Bến Tre</option>
+        <option value="Bình Dương">Bình Dương</option>
+        <option value="Bình Định">Bình Định</option>
+        <option value="Bình Phước">Bình Phước</option>
+        <option value="Bình Thuận">Bình Thuận</option>
+        <option value="Cà Mau">Cà Mau</option>
+        <option value="Cao Bằng">Cao Bằng</option>
+        <option value="Đắk Lắk">Đắk Lắk</option>
+        <option value="Đắk Nông">Đắk Nông</option>
+        <option value="Điện Biên">Điện Biên</option>
+        <option value="Đồng Nai">Đồng Nai</option>
+        <option value="Đồng Tháp">Đồng Tháp</option>
+        <option value="Gia Lai">Gia Lai</option>
+        <option value="Hà Giang">Hà Giang</option>
+        <option value="Hà Nam">Hà Nam</option>
+        <option value="Hà Tĩnh">Hà Tĩnh</option>
+        <option value="Hải Dương">Hải Dương</option>
+        <option value="Hậu Giang">Hậu Giang</option>
+        <option value="Hòa Bình">Hòa Bình</option>
+        <option value="Hưng Yên">Hưng Yên</option>
+        <option value="Khánh Hòa">Khánh Hòa</option>
+        <option value="Kiên Giang">Kiên Giang</option>
+        <option value="Kon Tum">Kon Tum</option>
+        <option value="Lai Châu">Lai Châu</option>
+        <option value="Lâm Đồng">Lâm Đồng</option>
+        <option value="Lạng Sơn">Lạng Sơn</option>
+        <option value="Lào Cai">Lào Cai</option>
+        <option value="Long An">Long An</option>
+        <option value="Nam Định">Nam Định</option>
+        <option value="Nghệ An">Nghệ An</option>
+        <option value="Ninh Bình">Ninh Bình</option>
+        <option value="Ninh Thuận">Ninh Thuận</option>
+        <option value="Phú Thọ">Phú Thọ</option>
+        <option value="Phú Yên">Phú Yên</option>
+        <option value="Quảng Bình">Quảng Bình</option>
+        <option value="Quảng Nam">Quảng Nam</option>
+        <option value="Quảng Ngãi">Quảng Ngãi</option>
+        <option value="Quảng Ninh">Quảng Ninh</option>
+        <option value="Quảng Trị">Quảng Trị</option>
+        <option value="Sóc Trăng">Sóc Trăng</option>
+        <option value="Sơn La">Sơn La</option>
+        <option value="Tây Ninh">Tây Ninh</option>
+        <option value="Thái Bình">Thái Bình</option>
+        <option value="Thái Nguyên">Thái Nguyên</option>
+        <option value="Thanh Hóa">Thanh Hóa</option>
+        <option value="Thừa Thiên Huế">Thừa Thiên Huế</option>
+        <option value="Tiền Giang">Tiền Giang</option>
+        <option value="Trà Vinh">Trà Vinh</option>
+        <option value="Tuyên Quang">Tuyên Quang</option>
+        <option value="Vĩnh Long">Vĩnh Long</option>
+        <option value="Vĩnh Phúc">Vĩnh Phúc</option>
+        <option value="Yên Bái">Yên Bái</option>
       </select>
       <button id="filterBtn">⚙️</button>
     </div>
 
     <nav class="menu">
-      <a href="#">Trang chủ</a>
+      <a href="index.html">Trang chủ</a>
       <a href="#">Bản đồ</a>
-      <a href="#">Báo tin</a>
+      <a href="report.html">Báo tin</a>
       <a href="#">Liên hệ</a>
+      <a href="dangnhap.html" id="loginBtn">Đăng nhập</a>
     </nav>
   </header>
 
-  <!-- Main Layout -->
+  <!-- ================= MAIN ================= -->
   <main class="layout">
-    <!-- Left Sidebar: Danh sách -->
+    <!-- Sidebar -->
     <aside class="sidebar">
       <div class="filterTabs">
         <button class="active">Tất cả</button>
@@ -47,24 +113,166 @@
       </div>
 
       <div id="reportList" class="report-list">
-        <!-- JS render cards -->
+        <div class="report-card">
+          <span class="tag need">Cần cứu</span>
+          <h4>Khu vực Nam Định</h4>
+          <p>Nước ngập cao, cần hỗ trợ người già và trẻ nhỏ.</p>
+        </div>
+
+        <div class="report-card">
+          <span class="tag rescue">Đội cứu hộ</span>
+          <h4>Đội Cứu Hộ Miền Bắc</h4>
+          <p>Đang di chuyển đến khu vực bị ảnh hưởng.</p>
+        </div>
+
+        <div class="report-card">
+          <span class="tag warning">Cảnh báo</span>
+          <h4>Mưa lớn kéo dài</h4>
+          <p>Đề phòng sạt lở tại khu vực đồi núi.</p>
+        </div>
       </div>
 
-      <button class="btn-submit">Gửi phản ánh</button>
+      <button class="btn-submit">📝 Gửi phản ánh</button>
     </aside>
 
-    <!-- Right: Map -->
+    <!-- Map Section -->
     <section class="map-section">
       <div id="map"></div>
+
       <div class="map-floating">
         <button class="float-btn">🕓 24h</button>
-        <button class="float-btn">🗺️</button>
-        <button class="float-btn">📍</button>
+        <button class="float-btn" id="fullscreenMapBtn">🗺️</button>
+        <button class="float-btn" id="locateBtn">📍</button>
       </div>
     </section>
   </main>
 
+  <!-- ================= LEAFLET JS ================= -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script type="module" src="js/app.js"></script>
+
+  <!-- ================= MAIN SCRIPT ================= -->
+  <script>
+    // ====== MAP INIT ======
+    const map = L.map("map").setView([16.0471, 108.206], 6);
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 19,
+      attribution: '&copy; OpenStreetMap'
+    }).addTo(map);
+
+    // Marker mặc định toàn quốc
+    const defaultMarker = L.marker([21.0278, 105.8342])
+      .addTo(map)
+      .bindPopup("<b>🆘 Trung tâm cứu hộ Hà Nội</b><br>Liên hệ ngay để hỗ trợ.")
+      .openPopup();
+
+    // Dữ liệu toạ độ trung tâm các tỉnh
+    const provinces = {
+  "An Giang": [10.5216, 105.1259],
+  "Bà Rịa - Vũng Tàu": [10.5417, 107.2429],
+  "Bạc Liêu": [9.2940, 105.7278],
+  "Bắc Giang": [21.2730, 106.1946],
+  "Bắc Kạn": [22.1440, 105.8348],
+  "Bắc Ninh": [21.1861, 106.0763],
+  "Bến Tre": [10.2415, 106.3753],
+  "Bình Dương": [11.1730, 106.6710],
+  "Bình Định": [13.7820, 109.2190],
+  "Bình Phước": [11.7512, 106.7235],
+  "Bình Thuận": [10.9333, 108.1000],
+  "Cà Mau": [9.1768, 105.1524],
+  "Cao Bằng": [22.6653, 106.2570],
+  "Cần Thơ": [10.0452, 105.7469],
+  "Đà Nẵng": [16.0678, 108.2208],
+  "Đắk Lắk": [12.7100, 108.2378],
+  "Đắk Nông": [12.2646, 107.6098],
+  "Điện Biên": [21.3860, 103.0170],
+  "Đồng Nai": [10.9453, 107.0042],
+  "Đồng Tháp": [10.4930, 105.6882],
+  "Gia Lai": [13.9833, 108.0000],
+  "Hà Giang": [22.8233, 104.9836],
+  "Hà Nam": [20.5411, 105.9210],
+  "Hà Nội": [21.0285, 105.8542],
+  "Hà Tĩnh": [18.3428, 105.9057],
+  "Hải Dương": [20.9393, 106.3306],
+  "Hải Phòng": [20.8449, 106.6881],
+  "Hậu Giang": [9.7845, 105.4701],
+  "Hòa Bình": [20.8172, 105.3376],
+  "Hưng Yên": [20.6464, 106.0511],
+  "Khánh Hòa": [12.2585, 109.0526],
+  "Kiên Giang": [10.0077, 105.0809],
+  "Kon Tum": [14.3545, 108.0076],
+  "Lai Châu": [22.4000, 103.4500],
+  "Lâm Đồng": [11.9404, 108.4583],
+  "Lạng Sơn": [21.8537, 106.7615],
+  "Lào Cai": [22.4800, 103.9700],
+  "Long An": [10.6956, 106.2431],
+  "Nam Định": [20.4337, 106.1773],
+  "Nghệ An": [18.6733, 105.6926],
+  "Ninh Bình": [20.2500, 105.9740],
+  "Ninh Thuận": [11.5650, 108.9886],
+  "Phú Thọ": [21.3227, 105.1066],
+  "Phú Yên": [13.0882, 109.0929],
+  "Quảng Bình": [17.4833, 106.6000],
+  "Quảng Nam": [15.5394, 108.0191],
+  "Quảng Ngãi": [15.1205, 108.7923],
+  "Quảng Ninh": [21.0064, 107.2925],
+  "Quảng Trị": [16.8163, 107.1003],
+  "Sóc Trăng": [9.6000, 105.9719],
+  "Sơn La": [21.3280, 103.9143],
+  "Tây Ninh": [11.3100, 106.0980],
+  "Thái Bình": [20.4500, 106.3400],
+  "Thái Nguyên": [21.5930, 105.8480],
+  "Thanh Hóa": [19.8075, 105.7760],
+  "Thừa Thiên Huế": [16.4637, 107.5909],
+  "Tiền Giang": [10.3664, 106.3587],
+  "Trà Vinh": [9.9347, 106.3450],
+  "Tuyên Quang": [21.8230, 105.2180],
+  "Vĩnh Long": [10.2560, 105.9588],
+  "Vĩnh Phúc": [21.3090, 105.6060],
+  "Yên Bái": [21.7168, 104.8986],
+  "TP. Hồ Chí Minh": [10.7769, 106.7009]
+};
+
+
+    let provinceMarker = null;
+    let currentProvince = "";
+    const provinceSelect = document.getElementById("provinceSelect");
+
+    provinceSelect.addEventListener("change", () => {
+      const selectedProvince = provinceSelect.value;
+
+      if (selectedProvince === currentProvince || !selectedProvince) {
+        if (provinceMarker) map.removeLayer(provinceMarker);
+        currentProvince = "";
+        map.setView([16.0471, 108.206], 6);
+        defaultMarker.addTo(map);
+        return;
+      }
+
+      currentProvince = selectedProvince;
+      if (map.hasLayer(defaultMarker)) map.removeLayer(defaultMarker);
+      if (provinceMarker) map.removeLayer(provinceMarker);
+
+      const coords = provinces[selectedProvince];
+      if (coords) {
+        provinceMarker = L.marker(coords)
+          .addTo(map)
+          .bindPopup(`📍 ${selectedProvince}`)
+          .openPopup();
+        map.flyTo(coords, 11, { animate: true, duration: 1.5 });
+      }
+    });
+
+    // ====== Định vị vị trí người dùng ======
+    document.getElementById("locateBtn").addEventListener("click", () => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(pos => {
+          const { latitude, longitude } = pos.coords;
+          map.flyTo([latitude, longitude], 14);
+          L.marker([latitude, longitude]).addTo(map)
+            .bindPopup("📍 Vị trí của bạn").openPopup();
+        });
+      } else alert("Trình duyệt không hỗ trợ định vị.");
+    });
+  </script>
 </body>
 </html>

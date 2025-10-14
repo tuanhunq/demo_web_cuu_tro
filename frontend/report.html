@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Báo Tin Cứu Hộ</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">🚨 CỨU HỘ TOÀN QUỐC</div>
+    <nav class="nav-links">
+      <a href="index.html">Trang chủ</a>
+      <a href="report.html" class="active">Báo tin</a>
+      <a href="dangnhap.html">Đăng nhập</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h1 class="title">📍 Báo Tin Khẩn Cấp</h1>
+    <p class="subtitle">Vui lòng cung cấp thông tin chi tiết để đội cứu hộ có thể hỗ trợ bạn nhanh nhất.</p>
+
+    <form id="reportForm" class="report-form">
+      <div class="form-group">
+        <label for="name">Họ và Tên</label>
+        <input type="text" id="name" placeholder="Nhập họ tên của bạn" required>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Số điện thoại</label>
+        <input type="tel" id="phone" placeholder="Nhập số điện thoại" required>
+      </div>
+
+      <div class="form-group">
+        <label for="description">Mô tả sự cố</label>
+        <textarea id="description" rows="4" placeholder="Ví dụ: Xe bị hỏng giữa đường, không khởi động được..." required></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="mapLink">Liên kết Google Maps</label>
+        <input type="url" id="mapLink" placeholder="Dán link Google Maps (nếu có)">
+      </div>
+
+      <div class="map-picker">
+        <p>🎯 Hoặc chọn vị trí trên bản đồ:</p>
+        <div id="map" class="map-container"></div>
+        <small id="coords" class="coords-text">Chưa chọn vị trí</small>
+      </div>
+
+      <button type="submit" class="btn-primary" id="submitBtn">🚀 Gửi Báo Tin</button>
+      <p id="responseMsg" class="response-msg"></p>
+    </form>
+  </main>
+
+  <footer class="footer">
+    <p>© 2025 Cứu Hộ Toàn Quốc - Kết nối khẩn cấp toàn quốc</p>
+  </footer>
+
+  <script src="js/map.js"></script>
+  <script>
+    const form = document.getElementById('reportForm');
+    const btn = document.getElementById('submitBtn');
+    const msg = document.getElementById('responseMsg');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      btn.disabled = true;
+      btn.textContent = "⏳ Đang gửi...";
+      
+      setTimeout(() => {
+        msg.textContent = "✅ Báo tin đã được gửi thành công! Đội cứu hộ sẽ liên hệ sớm.";
+        msg.style.color = "#22c55e";
+        btn.disabled = false;
+        btn.textContent = "🚀 Gửi Báo Tin";
+        form.reset();
+      }, 2000);
+    });
+  </script>
+</body>
+</html>
