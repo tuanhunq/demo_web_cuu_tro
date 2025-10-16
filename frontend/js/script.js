@@ -68,38 +68,60 @@ export function renderReports(filter = 'all', keyword = '') {
     return;
   }
 
-  filtered.forEach(r => {
-    const div = document.createElement('div');
-    div.className = 'report-card';
+filtered.forEach(r => {
+  const div = document.createElement('div');
+  div.className = 'report-card';
     div.innerHTML = `
-      <span class="tag ${r.type}">
-        ${r.type === 'need' ? '🆘 Cần cứu' : r.type === 'rescue' ? '🚑 Đội cứu hộ' : '⚠️ Cảnh báo'}
-      </span>
-      <h4>${r.title||''}</h4>
-      <p>${r.desc||''}</p>
-    `;
-
-    div.addEventListener('click', () => {
-      if (window.cuuMap && r.lat && r.lng) {
-        try {
-          window.cuuMap.flyTo([r.lat, r.lng], 13);
-          L.popup().setLatLng([r.lat, r.lng]).setContent(`<b>${r.title}</b><br>${r.desc}`).openOn(window.cuuMap);
-        } catch (e) { console.warn(e); }
+      <span class="tag tag-${r.type}">
+      ${
+        r.type === 'need'
+          ? '🆘 Cần cứu'
+          : r.type === 'rescue'
+          ? '🚑 Đội cứu hộ'
+          : r.type === 'supply'
+          ? '📦 Nhu yếu phẩm'
+          : r.type === 'vehicle'
+          ? '🛵 Cứu hộ xe'
+          : 'Khác'
       }
-    });
+    </span>
+    <h4>${r.title || ''}</h4>
+    <p>${r.desc || ''}</p>
+  `;
 
-    // append to every report list so both sidebars show the same data
-    listContainers.forEach(c => c.appendChild(div.cloneNode(true)));
-
+  div.addEventListener('click', () => {
     if (window.cuuMap && r.lat && r.lng) {
       try {
-        const marker = L.marker([r.lat, r.lng]).addTo(window.cuuMap).bindPopup(`<b>${r.title}</b><br>${r.desc}`);
-        window.__cuu_map_markers = window.__cuu_map_markers || [];
-        window.__cuu_map_markers.push(marker);
-      } catch (e) { console.warn('Tạo marker thất bại', e); }
+        window.cuuMap.flyTo([r.lat, r.lng], 13);
+        L.popup()
+          .setLatLng([r.lat, r.lng])
+          .setContent(`<b>${r.title}</b><br>${r.desc}`)
+          .openOn(window.cuuMap);
+      } catch (e) {
+        console.warn(e);
+      }
     }
   });
+
+  // append to every report list so both sidebars show the same data
+  listContainers.forEach(c => c.appendChild(div.cloneNode(true)));
+
+  // hiển thị marker trên bản đồ
+  if (window.cuuMap && r.lat && r.lng) {
+    try {
+      const marker = L.marker([r.lat, r.lng])
+        .addTo(window.cuuMap)
+        .bindPopup(`<b>${r.title}</b><br>${r.desc}`);
+      window.__cuu_map_markers = window.__cuu_map_markers || [];
+      window.__cuu_map_markers.push(marker);
+    } catch (e) {
+      console.warn('Tạo marker thất bại', e);
+    }
+  }
+});
+
 }
+
 
 // Gắn sự kiện cho tab lọc và ô tìm kiếm
 if (tabs) {
