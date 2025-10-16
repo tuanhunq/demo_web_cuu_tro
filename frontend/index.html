@@ -28,6 +28,11 @@
       <a href="report.html">Báo tin</a>
       <a href="#">Liên hệ</a>
       <a href="login.html" id="loginBtn">Đăng nhập</a>
+      <!-- 🔍 Thanh tìm kiếm tỉnh thành -->
+  <div class="search-box">
+    <input list="provinces" id="searchProvince" placeholder="🔍 Tìm kiếm tỉnh thành...">
+      <datalist id="provinces"></datalist>
+  </div>
     </nav>
 
     
@@ -36,36 +41,45 @@
   <!-- ================= MAIN ================= -->
   <main class="layout">
     <!-- Sidebar -->
-    <aside class="sidebar">
-      <div class="filterTabs">
-        <button class="active">Tất cả</button>
-        <button>🆘 Cần cứu</button>
-        <button>🚑 Đội cứu hộ</button>
-        <button>⚠️ Cảnh báo</button>
-      </div>
+<!-- Sidebar -->
+<aside class="sidebar">
+  <div class="filterTabs">
+    <button class="active">Tất cả</button>
+    <button>🆘 Cần cứu hộ</button>
+    <button>🚑 Đội cứu hộ</button>
+    <button>📦 Nhu yếu phẩm</button>
+    <button>🛵 Cứu hộ xe</button>
+  </div>
 
-      <div id="reportList" class="report-list">
-        <div class="report-card">
-          <span class="tag need">Cần cứu</span>
-          <h4>Khu vực Nam Định</h4>
-          <p>Nước ngập cao, cần hỗ trợ người già và trẻ nhỏ.</p>
-        </div>
+  <div id="reportList" class="report-list">
 
-        <div class="report-card">
-          <span class="tag rescue">Đội cứu hộ</span>
-          <h4>Đội Cứu Hộ Miền Bắc</h4>
-          <p>Đang di chuyển đến khu vực bị ảnh hưởng.</p>
-        </div>
+    <div class="report-card">
+      <span class="tag tag-need">🆘 Cần cứu hộ</span>
+      <h4>Thái Nguyên cần 5 xe máy đi làm sau lũ</h4>
+      <p>Người dân gặp khó khăn về chi phí sửa xe.</p>
+      <small>📍 Thái Nguyên, Vietnam</small>
+    </div>
 
-        <div class="report-card">
-          <span class="tag warning">Cảnh báo</span>
-          <h4>Mưa lớn kéo dài</h4>
-          <p>Đề phòng sạt lở tại khu vực đồi núi.</p>
-        </div>
-      </div>
+    <div class="report-card">
+      <span class="tag tag-supply">📦 Nhu yếu phẩm</span>
+      <h4>Quảng Bình cần nước sạch và mì gói</h4>
+      <p>Khu vực bị chia cắt, khó tiếp cận.</p>
+      <small>📍 Quảng Bình, Vietnam</small>
+    </div>
 
-      <button class="btn-submit">📝 Gửi phản ánh</button>
-    </aside>
+    <div class="report-card">
+      <span class="tag tag-rescue">🚑 Đội cứu hộ</span>
+      <h4>Đội Cứu Hộ Miền Bắc di chuyển tới Nam Định</h4>
+      <p>Mang theo xuồng, thuốc men và lương thực.</p>
+      <small>📍 Nam Định, Vietnam</small>
+    </div>
+
+  </div>
+
+  <button class="btn-submit">📝 Gửi phản ánh</button>
+</aside>
+
+
 
     <!-- Map Section -->
     <section class="map-section">
@@ -91,9 +105,9 @@
 
 
 
-  <!-- load modular scripts -->
+  <!-- load modular scripts: provinces first so map.js can access window.provinces -->
+  <script src="js/provinces.js"></script>
   <script src="js/map.js"></script>
   <script src="js/script.js" type="module"></script>
-  <script src="js/provinces.js" type="module"> </script>
 </body>
 </html>

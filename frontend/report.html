@@ -9,12 +9,23 @@
 </head>
 <body>
   <header class="navbar">
-    <div class="logo">🚨 CỨU HỘ TOÀN QUỐC</div>
-    <nav class="nav-links">
+    <div class="logo">
+      <img src="assets/logo.png" alt="Logo" />
+      <h1>Cứu Hộ</h1>
+    </div>  
+
+    
+    <nav class="menu">
       <a href="index.html">Trang chủ</a>
-      <a href="report.html" class="active">Báo tin</a>
-      <a href="dangnhap.html">Đăng nhập</a>
+      <a href="#">Bản đồ</a>
+      <a href="report.html">Báo tin</a>
+      <a href="#">Liên hệ</a>
+      <a href="login.html" id="loginBtn">Đăng nhập</a>
+      <!-- 🔍 Thanh tìm kiếm tỉnh thành -->
+  
     </nav>
+
+    
   </header>
 
   <main class="container">
@@ -39,14 +50,19 @@
 
       <div class="form-group">
         <label for="mapLink">Liên kết Google Maps</label>
-        <input type="url" id="mapLink" placeholder="Dán link Google Maps (nếu có)">
+        <input type="url" id="mapLink" placeholder="Dán link Google Maps ">
       </div>
+      <div class="form-group">
+  <label for="category">Loại phản ánh</label>
+  <select id="category" name="category">
+    <option value="">-- Chọn loại phản ánh --</option>
+    <option value="nhu-yeu-pham">Cần nhu yếu phẩm</option>
+    <option value="doi-cuu-ho">Đội cứu hộ</option>
+    <option value="can-cuu-ho">Cần cứu hộ</option>
+    <option value="cuu-ho-xe">Cứu hộ xe</option>
+  </select>
+</div>
 
-      <div class="map-picker">
-        <p>🎯 Hoặc chọn vị trí trên bản đồ:</p>
-        <div id="map" class="map-container"></div>
-        <small id="coords" class="coords-text">Chưa chọn vị trí</small>
-      </div>
 
       <button type="submit" class="btn-primary" id="submitBtn">🚀 Gửi Báo Tin</button>
       <p id="responseMsg" class="response-msg"></p>

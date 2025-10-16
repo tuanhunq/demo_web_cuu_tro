@@ -1,12 +1,39 @@
 // UI logic for reports list and interaction with the map
 import { fetchReports } from './api.js';
 
-const listContainer = document.getElementById('reportList');
+const listContainers = Array.from(document.querySelectorAll('.report-list'));
 const tabs = document.querySelectorAll('.filterTabs button');
 const searchInput = document.getElementById('searchInput');
 
 let localReports = [];
 let markers = [];
+
+function parseStaticReports() {
+  const out = [];
+  // take cards from the first .report-list in DOM as fallback data
+  const firstList = document.querySelector('.report-list');
+  if (!firstList) return out;
+  const cards = Array.from(firstList.querySelectorAll('.report-card'));
+  cards.forEach(card => {
+    const titleEl = card.querySelector('h4');
+    const descEl = card.querySelector('p');
+    const span = card.querySelector('span');
+    let type = 'all';
+    if (span) {
+      const cls = (span.className || '').toLowerCase();
+      if (cls.includes('need') || span.textContent.includes('Cần')) type = 'need';
+      else if (cls.includes('rescue') || span.textContent.includes('Đội')) type = 'rescue';
+      else if (cls.includes('warning') || span.textContent.includes('Cảnh')) type = 'warning';
+    }
+    out.push({
+      id: undefined,
+      type,
+      title: titleEl ? titleEl.textContent.trim() : '',
+      desc: descEl ? descEl.textContent.trim() : '',
+    });
+  });
+  return out;
+}
 
 function getActiveType() {
   const active = document.querySelector('.filterTabs button.active');
@@ -17,8 +44,8 @@ function getActiveType() {
 }
 
 export function renderReports(filter = 'all', keyword = '') {
-  if (!listContainer) return;
-  listContainer.innerHTML = '';
+  if (!listContainers || listContainers.length === 0) return;
+  listContainers.forEach(c => c.innerHTML = '');
 
   try {
     if (window.__cuu_map_markers) {
@@ -37,7 +64,7 @@ export function renderReports(filter = 'all', keyword = '') {
   });
 
   if (filtered.length === 0) {
-    listContainer.innerHTML = `<p style="text-align:center;color:#6b7280;">Không có dữ liệu phù hợp.</p>`;
+    listContainers.forEach(c => c.innerHTML = `<p style="text-align:center;color:#6b7280;">Không có dữ liệu phù hợp.</p>`);
     return;
   }
 
@@ -61,7 +88,8 @@ export function renderReports(filter = 'all', keyword = '') {
       }
     });
 
-    listContainer.appendChild(div);
+    // append to every report list so both sidebars show the same data
+    listContainers.forEach(c => c.appendChild(div.cloneNode(true)));
 
     if (window.cuuMap && r.lat && r.lng) {
       try {
@@ -94,9 +122,13 @@ if (searchInput) {
 (async function init() {
   try {
     localReports = await fetchReports();
+    if (!localReports || localReports.length === 0) {
+      // fallback to static DOM cards
+      localReports = parseStaticReports();
+    }
   } catch (e) {
-    console.warn('Không thể lấy dữ liệu từ API, dùng dữ liệu cục bộ rỗng.');
-    localReports = [];
+    console.warn('Không thể lấy dữ liệu từ API, dùng dữ liệu cục bộ nếu có.');
+    localReports = parseStaticReports();
   }
   renderReports(getActiveType(), searchInput ? searchInput.value : '');
 })();

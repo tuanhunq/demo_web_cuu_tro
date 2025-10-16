@@ -655,3 +655,21 @@ textarea { resize: none; min-height: 90px; }
     color: #cbd5e1;
   }
 }
+
+
+
+
+
+/* =====================================
+   ✅ FIX: HIỂN THỊ DANH SÁCH REPORT NGAY KHI VÀO TRANG
+===================================== */
+#reportList {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+
+
+
+
