@@ -1,5 +1,5 @@
 // UI logic for reports list and interaction with the map
-import { fetchReports } from './api.js';
+import { fetchReports } from '../../api.js';
 
 const listContainers = Array.from(document.querySelectorAll('.report-list'));
 const tabs = document.querySelectorAll('.filterTabs button');
